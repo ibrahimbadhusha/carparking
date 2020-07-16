@@ -314,16 +314,19 @@ connection = DriverManager.getConnection(connectionUrl, userid, password);
 statement=connection.createStatement();
 String sql ="select * from parking";
 resultSet = statement.executeQuery(sql);
+int i=0;
 for(int j=0;j<10;j++){
+	
 while(resultSet.next()){
+	i++;
 %>
 <tr>
 <td><%=resultSet.getString("slot_number") %></td>
 <td>full</td>
-</tr>
-
+</tr><%}} %>
+<p>The number of free slot available</p>
+<%=30-i%>
 <%
-}}
 connection.close();
 } catch (Exception e) {
 e.printStackTrace();
@@ -332,7 +335,11 @@ e.printStackTrace();
 </table>
         </div>
         
-  
+  <script type="text/javascript">
+        function buttonclick() {
+            window.location = "https://rzp.io/l/1APETIC";
+        }
+    </script>
         <div class = "col-md-7 register-right">
         <form action="process.jsp">
         <h3>Enter Details Here </h3>
@@ -346,7 +353,7 @@ e.printStackTrace();
               <div class="form-group">
                         <input type="number" name="phoneno" class="form-control" placeholder="phone number" onclick="this.value=''"/>
               </div>
-              <button type = "submit" class ="btn btn-primary" value="register"/>Register</button>
+              <button type = "submit" class ="btn btn-primary" onclick="buttonclick()" value="register"/>Register</button>
               </form>
             
               
